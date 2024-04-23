@@ -1,13 +1,18 @@
 import { useState } from 'react';
+
 export const Searchbar = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
-  const onChange = event => {
+
+  const handleChange = event => {
     setQuery(event.target.value);
   };
+
   const handleSubmit = event => {
     event.preventDefault();
     onSubmit(query);
+    setQuery('');
   };
+
   return (
     <header>
       <form onSubmit={handleSubmit}>
@@ -15,13 +20,11 @@ export const Searchbar = ({ onSubmit }) => {
           <span>Search</span>
         </button>
         <input
-          name="searched"
-          value={query}
-          onChange={onChange}
           type="text"
-          autocomplete="off"
-          autofocus
-          placeholder="Search images and photos"
+          autoComplete="off"
+          autoFocus
+          value={query}
+          onChange={handleChange}
         />
       </form>
     </header>
